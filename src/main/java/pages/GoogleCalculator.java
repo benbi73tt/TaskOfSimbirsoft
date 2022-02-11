@@ -19,11 +19,9 @@ public class GoogleCalculator {
     public WebElement getDataEntryAndResult() {
         return dataEntryAndResult;
     }
-
     public String getHistoryString() {
         return historyString;
     }
-
     public String getEnteredData() {
         return enteredData + " =";
     }

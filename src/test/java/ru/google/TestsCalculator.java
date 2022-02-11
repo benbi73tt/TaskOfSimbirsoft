@@ -8,19 +8,11 @@ import pages.GoogleCalculator;
 import pages.HomeGooglePage;
 import steps.Steps;
 
-public class TestsCalculator extends MainPageTest {
-
-
-//    @Test
-//    public void testWithIntegers() {
-//        HomeGooglePage homeGooglePage = new HomeGooglePage(driver, "Калькулятор");
-//    }
+public class TestsCalculator extends BaseTest {
 
     @Feature("Проверка результатов")
-//    @DisplayName("Вычисления результатов на калькуляторе")
     @DisplayName("Вычисление целых чисел на калькуляторе")
     @ParameterizedTest(name = "{displayName} {arguments}")
-//    @CsvSource({"(1+2)*3-40/5,1", "6/0,Infinity", "sin,Error"})
     @CsvSource({"(1+2)*3-40/5,1"})
     public void testWithIntegersSearch(String expression, String result) {
         HomeGooglePage homeGooglePage = new HomeGooglePage(driver);
@@ -30,7 +22,7 @@ public class TestsCalculator extends MainPageTest {
         googleCalculator.calculator(expression);
 
         Steps.checkHistoryAndDataEntry(googleCalculator.getHistoryString(), googleCalculator.getEnteredData());
-        Steps.checkResult(result, googleCalculator.getDataEntryAndResult().getText(),driver);
+        Steps.checkResult(result, googleCalculator.getDataEntryAndResult().getText(), driver);
     }
 
     @Feature("Проверка результатов")
@@ -45,7 +37,7 @@ public class TestsCalculator extends MainPageTest {
         googleCalculator.calculator(expression);
 
         Steps.checkHistoryAndDataEntry(googleCalculator.getHistoryString(), googleCalculator.getEnteredData());
-        Steps.checkResult(result, googleCalculator.getDataEntryAndResult().getText(),driver);
+        Steps.checkResult(result, googleCalculator.getDataEntryAndResult().getText(), driver);
     }
 
     @Feature("Проверка результатов")
@@ -60,6 +52,6 @@ public class TestsCalculator extends MainPageTest {
         googleCalculator.calculator(expression);
 
         Steps.checkHistoryAndDataEntry(googleCalculator.getHistoryString(), googleCalculator.getEnteredData());
-        Steps.checkResult(result, googleCalculator.getDataEntryAndResult().getText(),driver);
+        Steps.checkResult(result, googleCalculator.getDataEntryAndResult().getText(), driver);
     }
 }

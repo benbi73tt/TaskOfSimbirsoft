@@ -14,12 +14,12 @@ import java.nio.file.Paths;
 public class Screenshoter {
 
     @Attachment
-    public static byte[] getScreen(WebDriver driver){
-        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+    public static byte[] getScreen(WebDriver driver) {
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(screenshot, new File("src/main/resources/screen.png"));
             return Files.readAllBytes(Paths.get("src/main/resources", "screen.png"));
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             Assertions.fail("Не удалось сохранить файл на диск");
         }

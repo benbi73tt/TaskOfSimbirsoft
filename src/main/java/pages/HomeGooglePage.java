@@ -11,10 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeGooglePage {
-
+    protected WebDriver driver;
     WebElement searchField;
     WebElement searchButtonInJSController;
-    private WebDriver driver;
 
     public HomeGooglePage(WebDriver driver) {
         this.driver = driver;
@@ -23,15 +22,15 @@ public class HomeGooglePage {
         this.searchButtonInJSController = driver.findElement(By.xpath("//div[@class='lJ9FBc']//input[@type='submit' and @value='Поиск в Google']"));
     }
 
-    public HomeGooglePage(WebDriver driver, String search) {
-        this.driver = driver;
-        this.driver.get("http://google.com/search?q=" + search);
-    }
-
     public void findAndPressButton(String keyFind) {
         searchField.click();
         searchField.sendKeys(keyFind);
         searchButtonInJSController.click();
+    }
+
+    public HomeGooglePage(WebDriver driver, String search) {
+        this.driver = driver;
+        this.driver.get("http://google.com/search?q=" + search);
     }
 
     public void findAndPressEnter(String keyFind) {
@@ -39,11 +38,11 @@ public class HomeGooglePage {
         searchField.sendKeys(keyFind, Keys.ENTER);
     }
 
-    public boolean goPage(String namePage){
+    public boolean goPage(String namePage) {
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        for (String tab : tabs){
+        for (String tab : tabs) {
             driver.switchTo().window(tab);
-            if(driver.getTitle().contains(namePage))
+            if (driver.getTitle().contains(namePage))
                 return true;
         }
         Assertions.fail("Не удалось открыть вкладку, содержащую " + namePage);
