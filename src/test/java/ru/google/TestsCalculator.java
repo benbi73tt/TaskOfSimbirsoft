@@ -1,12 +1,12 @@
 package ru.google;
 
 import io.qameta.allure.Feature;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import pages.GoogleCalculator;
 import pages.HomeGooglePage;
+import steps.Steps;
 
 public class TestsCalculator extends MainPageTest {
 
@@ -29,10 +29,8 @@ public class TestsCalculator extends MainPageTest {
         GoogleCalculator googleCalculator = new GoogleCalculator(driver);
         googleCalculator.calculator(expression);
 
-        Assertions.assertEquals(googleCalculator.getHistoryString(), googleCalculator.getEnteredData(),
-                "Данные из истории и введенных данных не совпадают");
-        Assertions.assertEquals(result, googleCalculator.getDataEntryAndResult().getText(),
-                "Ожидаемый результат и результат калькулятора не совпадают");
+        Steps.checkHistoryAndDataEntry(googleCalculator.getHistoryString(), googleCalculator.getEnteredData());
+        Steps.checkResult(result, googleCalculator.getDataEntryAndResult().getText(),driver);
     }
 
     @Feature("Проверка результатов")
@@ -46,10 +44,8 @@ public class TestsCalculator extends MainPageTest {
         GoogleCalculator googleCalculator = new GoogleCalculator(driver);
         googleCalculator.calculator(expression);
 
-        Assertions.assertEquals(googleCalculator.getHistoryString(), googleCalculator.getEnteredData(),
-                "Данные из истории и введенных данных не совпадают");
-        Assertions.assertEquals(result, googleCalculator.getDataEntryAndResult().getText(),
-                "Ожидаемый результат и результат калькулятора не совпадают");
+        Steps.checkHistoryAndDataEntry(googleCalculator.getHistoryString(), googleCalculator.getEnteredData());
+        Steps.checkResult(result, googleCalculator.getDataEntryAndResult().getText(),driver);
     }
 
     @Feature("Проверка результатов")
@@ -63,9 +59,7 @@ public class TestsCalculator extends MainPageTest {
         GoogleCalculator googleCalculator = new GoogleCalculator(driver);
         googleCalculator.calculator(expression);
 
-        Assertions.assertEquals(googleCalculator.getHistoryString(), googleCalculator.getEnteredData(),
-                "Данные из истории и введенных данных не совпадают");
-        Assertions.assertEquals(result, googleCalculator.getDataEntryAndResult().getText(),
-                "Ожидаемый результат и результат калькулятора не совпадают");
+        Steps.checkHistoryAndDataEntry(googleCalculator.getHistoryString(), googleCalculator.getEnteredData());
+        Steps.checkResult(result, googleCalculator.getDataEntryAndResult().getText(),driver);
     }
 }
